@@ -1,11 +1,12 @@
 ﻿Folder PATH listing
-Volume serial number is 00000237 0062:F600
+Volume serial number is 000001BC 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
 |   index.html
 |   LICENSE
 |   README.md
+|   serve.bat
 |   
 +---assets
 |   \---README
