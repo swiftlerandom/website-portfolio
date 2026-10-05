@@ -1,0 +1,9 @@
+# I used this quick line in Terminal to generate a FILEMAP. Please lookup the equivalent for your own IDE if you ever need to create your own FILEMAP:
+
+Windows Raw Terminal:
+tree /f /a | Out-File -Encoding utf8 FILEMAP.md
+
+VSCode:
+tree -I 'node_modules|.git|dist' > FILEMAP.md
+
+# Just realized we need to use localhost for now before actual deployment since our project is modularized. Please run the .bat file whilst developing for everything to work properly.
