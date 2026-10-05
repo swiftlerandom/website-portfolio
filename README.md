@@ -6,7 +6,7 @@ Please setup your SSH and connect to our repository to start developing ^^. I wi
 
 If you are new to this, you may use these resources as a guide:
 - [Official GitHub SSH Documentation](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Community dev.to Comprehensive Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [Community dev.to Comprehensive Guide](https://dev.to/gervaisamoah/add-a-new-ssh-key-for-github-on-your-new-computer-54l1)
 
 Once you are done with that, clone our repository and navigate to it:
 1. Open your terminal or cmd (either via your IDE or raw terminal)
