@@ -14,14 +14,28 @@ Once you are done with that, clone our repository and navigate to it:
 ```bash
 git clone git@github.com:swiftlyrandom/website-portfolio.git
 ```
+<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+  <img src="./assets/README/gitclone.png" alt="Tutorial" width="100%" />
+</a>
+
 3. Navigate into the project directory:
 ```bash
 cd YourRepositoryName
 ```
+
+<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+  <img src="./assets/README/gitcd.png" alt="Tutorial" width="100%" />
+</a>
+
 4. Verify your remote connection:
 ```bash
 git remote -v
 ```
+
+<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+  <img src="./assets/README/gitremote.png" alt="Tutorial" width="100%" />
+</a>
+
 5. Start developing!
 
 # Workflow & Contribution | PLEASE FOLLOW THIS SO WE DON'T HAVE ANY FILE CONFLICTS
@@ -29,9 +43,6 @@ git remote -v
 ``` bash
 git pull
 ```
-<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
-  <img src="./assets/README/gitclone.png" alt="Tutorial" width="100%" />
-</a>
 2. When submitting an output, please do commit and push to the main branch:
 ```bash
 git add .
@@ -43,6 +54,11 @@ Commits are not limited to pushing. You are also free to keep it in your local m
 ```bash
 git push
 ```
+
+<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+  <img src="./assets/README/gitworkflow.png" alt="Tutorial" width="100%" />
+</a>
+
 
 Or by full
 ```bash
