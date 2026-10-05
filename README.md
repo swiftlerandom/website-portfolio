@@ -29,6 +29,9 @@ git remote -v
 ``` bash
 git pull
 ```
+<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+  <img src="./.github/assets/README/gitclone.png" alt="Tutorial" width="100%" />
+</a>
 2. When submitting an output, please do commit and push to the main branch:
 ```bash
 git add .
