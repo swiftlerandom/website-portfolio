@@ -26,7 +26,7 @@ git clone git@github.com:swiftlerandom/website-portfolio.git
 
 3. Navigate into the project directory:
 ```bash
-cd YourRepositoryName
+cd website-portfolio
 ```
 
 <a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
