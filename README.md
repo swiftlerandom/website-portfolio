@@ -1,6 +1,9 @@
 # Website Group Activity: FEUR Experience
 Website of our group members showcasing our student experience for the first semester as freshman students of FEUR. 
 
+# Dev Log:
+Please read and update devlog if you can, or just talk in our gc lol. Run the .bat file to open the localhost server and website, keep the terminal open and close when you're done.
+
 # Quick Start | Group Member Setup
 Please setup your SSH and connect to our repository to start developing ^^. I will be modularizing the file system for each member to focus on their own individual page to prevent merge conflicts and streamline development.
 
