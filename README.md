@@ -5,6 +5,9 @@ Website of our group members showcasing our student experience for the first sem
 Please read and update devlog if you can, or just talk in our group chat. Run the .bat file to open the localhost server and website, keep the terminal open and close when you're done.
 
 # Quick Start | Group Member Setup
+Download Git for version management (required):
+- [Git Download Website](https://git-scm.com/install/windows)
+
 Please setup your SSH and connect to our repository to start developing ^^. I will be modularizing the file system for each member to focus on their own individual page to prevent merge conflicts and streamline development.
 
 If you are new to this, you may use these resources as a guide:
