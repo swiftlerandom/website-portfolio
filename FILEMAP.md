@@ -1,5 +1,5 @@
 ﻿Folder PATH listing
-Volume serial number is 000001BC 0062:F600
+Volume serial number is 000001EA 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
@@ -9,6 +9,9 @@ C:.
 |   serve.bat
 |   
 +---assets
+|   +---nav
+|   |       logo.png
+|   |       
 |   \---README
 |           gitcd.png
 |           gitclone.png
@@ -47,7 +50,11 @@ C:.
 |       
 \---nav
     +---css
+    |       style.css
+    |       
     +---js
+    |       inject.js
+    |       
     \---shared
             footer.html
             header.html

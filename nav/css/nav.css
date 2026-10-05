@@ -1,0 +1,16 @@
+.top-bar {
+	background: #05683b;
+	width: 100%;
+	height: 50px;
+}
+.main-bar {
+	background: #e7f1ec;
+	width: 100%;
+	height: 75px;
+	display: flex; 
+	align-items: center;
+}
+.main-bar-logo {
+	height: 50px;
+	width: auto;
+}
