@@ -17,7 +17,7 @@ Once you are done with that, clone our repository and navigate to it:
 ```bash
 git clone git@github.com:swiftlyrandom/website-portfolio.git
 ```
-<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+<a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
   <img src="./assets/README/gitclone.png" alt="Tutorial" width="100%" />
 </a>
 
@@ -26,7 +26,7 @@ git clone git@github.com:swiftlyrandom/website-portfolio.git
 cd YourRepositoryName
 ```
 
-<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+<a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
   <img src="./assets/README/gitcd.png" alt="Tutorial" width="100%" />
 </a>
 
@@ -35,7 +35,7 @@ cd YourRepositoryName
 git remote -v
 ```
 
-<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+<a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
   <img src="./assets/README/gitremote.png" alt="Tutorial" width="100%" />
 </a>
 
@@ -58,7 +58,7 @@ Commits are not limited to pushing. You are also free to keep it in your local m
 git push
 ```
 
-<a href="[GitHub Link](https://github.com/swiftlyrandom/website-portfolio)">
+<a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
   <img src="./assets/README/gitworkflow.png" alt="Tutorial" width="100%" />
 </a>
 
