@@ -23,3 +23,28 @@ cd YourRepositoryName
 git remote -v
 ```
 5. Start developing!
+
+# Workflow & Contribution | PLEASE FOLLOW THIS SO WE DON'T HAVE ANY FILE CONFLICTS
+1. Using your Terminal, pull the latest updates from the main branch before working (follow these in order):
+``` bash
+git pull
+```
+2. When submitting an output, please do commit and push to the main branch:
+```bash
+git add .
+```
+```bash
+git commit -m "Your update text here, type whatever"
+```
+Commits are not limited to pushing. You are also free to keep it in your local machine for saving and testing before saving it.
+```bash
+git push
+```
+
+Or by full
+```bash
+git add .
+git commit -m "Your update text here, type whatever"
+git push
+```
+
