@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .top-bar {
 	background: #05683b;
 	width: 100%;
@@ -13,4 +18,5 @@
 .main-bar-logo {
 	height: 50px;
 	width: auto;
+	margin-left: 40px;
 }
