@@ -18,7 +18,7 @@ Once you are done with that, clone our repository and navigate to it:
 1. Open your terminal or cmd (either via your IDE or raw terminal)
 2. Clone the repository via SSH:
 ```bash
-git clone git@github.com:swiftlyrandom/website-portfolio.git
+git clone git@github.com:swiftlerandom/website-portfolio.git
 ```
 <a href="[GitHub Link](https://github.com/swiftlerandom/website-portfolio)">
   <img src="./assets/README/gitclone.png" alt="Tutorial" width="100%" />
