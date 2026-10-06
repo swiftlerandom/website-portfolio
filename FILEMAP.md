@@ -1,5 +1,5 @@
 ﻿Folder PATH listing
-Volume serial number is 000001EA 0062:F600
+Volume serial number is 00000248 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
@@ -10,7 +10,9 @@ C:.
 |   
 +---assets
 |   +---nav
+|   |       Cainta.png
 |   |       logo.png
+|   |       Marikina.png
 |   |       
 |   \---README
 |           gitcd.png
@@ -50,7 +52,7 @@ C:.
 |       
 \---nav
     +---css
-    |       style.css
+    |       nav.css
     |       
     +---js
     |       inject.js
