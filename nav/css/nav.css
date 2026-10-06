@@ -55,20 +55,26 @@
 	position: absolute;
 	top: 100%;
 	right: 0;
-	background: white;
-	margin-top: 25px;
+	padding-top: 15px;
 	min-width: 220px;
-	height: auto;
+}
+.dropdown-card {
+	background: white;
 	padding: 10px 0;
 	border-radius: 15px;
-	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.dropdown-menu a {
+.dropdown-card a {
 	display: block;
 	padding: 10px 20px;
 	color: #000000;
 	text-decoration: none;
 	white-space: nowrap;
+}
+.dropdown-card a:hover {
+	background-color: #f0f0f0;
+	color: #05683b;
+	border-radius: 8px;
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
