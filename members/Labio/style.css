@@ -1,6 +1,6 @@
 /* Labio CSS */
 body {
-	background: #3E5F44;
+	background: #FFFFFF;
 	color: #f5f5f5;
 	font-family: sans-serif;
 	min-height: 100vh;
@@ -51,8 +51,8 @@ body {
 .badge {
 	display: inline-block;
 	padding: 6px 14px;
-	background-color: #DDD6b9;
-	color: #3E5F44;
+	background-color: #F5E8B6;
+	color: #05683b;
 	border-radius: 20px;
 	font-size: 1.85rem;
 	font-weight: 600;
@@ -71,4 +71,12 @@ body {
 	font-size: 1.85rem;
 	color: #f5f5f5;
 	margin-bottom: 1rem;
+}
+.separator {
+	background: #F5E8B6;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 40px;
 }
