@@ -6,14 +6,10 @@ body {
 	min-height: 100vh;
 }
 .content-section {
+	z-index: 1;
 	padding: 40px;
 	max-width: 1200px;
-	margin: 0 auto;
-	min-height: calc(100vh - 100px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1;
+	text-align: center;
 }
 .profile-header {
 	position: relative;
@@ -51,6 +47,7 @@ body {
 .profile-section {
 	text-align: center;
 	padding: 40px 0;
+	transform: translateY(-30%);
 }
 .badge {
 	display: inline-block;
