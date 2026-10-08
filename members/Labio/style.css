@@ -14,7 +14,7 @@ body {
 .profile-header {
 	position: relative;
 	width: 100%;
-	min-height: 80vh;
+	min-height: 50vh;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
@@ -47,7 +47,6 @@ body {
 .profile-section {
 	text-align: center;
 	padding: 40px 0;
-	transform: translateY(-30%);
 }
 .badge {
 	display: inline-block;
