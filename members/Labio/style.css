@@ -14,6 +14,15 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+.profile-header {
+	background-image: url('IMG20261002175141.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	min-height: 80vh;
+	display: flex;
+}
 .image-section {
 	padding: 40px;
 	max-width: 1200px;
