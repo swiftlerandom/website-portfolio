@@ -51,7 +51,7 @@ body {
 .badge {
 	display: inline-block;
 	padding: 6px 14px;
-	background-color: #F5E8B6;
+	background-color: #e7f1ec;
 	color: #05683b;
 	border-radius: 20px;
 	font-size: 1.85rem;
@@ -73,10 +73,10 @@ body {
 	margin-bottom: 1rem;
 }
 .separator {
-	background: #F5E8B6;
-	height: 60px;
+	background: #e7f1ec;
+	height: 3.75rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 40px;
+	padding: 0 2.5rem;
 }
