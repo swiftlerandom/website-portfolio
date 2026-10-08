@@ -1,4 +1,3 @@
-Test
 # Website Group Activity: FEUR Experience
 Website of our group members showcasing our student experience for the first semester as freshman students of FEUR. 
 
