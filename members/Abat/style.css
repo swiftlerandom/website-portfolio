@@ -1,1 +1,8 @@
-<!-- Abat CSS -->
+/* Abat CSS */
+.image {
+	width: 100%;
+	max-width: 100px;
+	height: auto;
+	display: block;
+	margin: 2px auto;
+}
