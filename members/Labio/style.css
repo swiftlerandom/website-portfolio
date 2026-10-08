@@ -5,7 +5,7 @@ body {
 	font-family: sans-serif;
 	min-height: 100vh;
 }
-.content-container {
+.content-section {
 	padding: 40px;
 	max-width: 1200px;
 	margin: 0 auto;
@@ -13,6 +13,19 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.image-section {
+	padding: 40px;
+	max-width: 1200px;
+	margin: 0 auto;
+	min-height: calc(100vh - 100px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.image {
+  max-width: 100%;
+  height: auto;
 }
 .profile-section {
 	text-align: center;
