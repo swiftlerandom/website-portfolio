@@ -90,6 +90,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 0 2.5rem;
+	gap: 3rem;
 }
 .aboutme-container {
 	display: flex;
@@ -97,14 +98,18 @@ body {
 	align-items: center;
 	justify-content: center;
 	margin: 0.5rem;
+	min-width: 0;
+	text-align: center;
 }
 .aboutme-text {
-	font-size: 1.85rem;
+	font-size: 1.25rem;
 	color: #05683b;
 	margin-bottom: 1rem;
+	overflow-wrap: break-word;
+	word-break: normal;
 }
 .aboutme-toptext {
-	font-size: 1.25rem;
+	font-size: 0.80rem;
 	color: #05683b;
 	margin-bottom: 1rem;
 }
