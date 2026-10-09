@@ -7,9 +7,16 @@ body {
 }
 .container {
 	max-width: 1100px;
-	max-height: auto;
 	margin: 0 auto;
 	padding: 0 1.25rem;
+}
+.sections {
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+	position: relative;
+	margin-top: 2rem;
+	background: white;
 }
 .content-section {
 	z-index: 1;
@@ -19,12 +26,12 @@ body {
 }
 .profile-header {
 	position: relative;
-	width: 100%;
-	min-height: 50vh;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 3rem 2rem;
+	min-height: 28vh;
 }
 .profile-header-bg {
 	position: absolute;
