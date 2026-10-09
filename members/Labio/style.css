@@ -113,3 +113,18 @@ body {
 	color: #05683b;
 	margin-bottom: 1rem;
 }
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.gallery img {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	object-fit: cover;
+	display: block;
+}
