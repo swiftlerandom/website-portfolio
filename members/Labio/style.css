@@ -148,10 +148,11 @@ body {
 	align-items: center;
 	justify-content: center;
 	margin: -3rem 0 2rem;
+	gap: 1rem;
 	text-align: center;
 	padding: 3rem 3rem;	
 }
-.profbutton-container {
+.profbutton-container-profiles {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -160,10 +161,30 @@ body {
 	padding: 1.25rem 1.5rem;
 	background-color: #05683b;
 	border-radius: 30px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08)
 }
-.profbutton-text {
+.profbutton-container-misc {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 250px;
+	max-height: 20px;
+	padding: 1.25rem 1.5rem;
+	background-color: #FFFFFF;
+	border-radius: 30px;
+	border: 1px solid #808080;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.profbutton-text-prof {
 	font-size: 0.80rem;
 	color: #FFFFFF;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+.profbutton-text-misc {
+	font-size: 0.80rem;
+	color: #05683b;
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
