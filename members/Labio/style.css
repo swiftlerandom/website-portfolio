@@ -143,6 +143,31 @@ body {
 	color: #05683b;
 	margin-bottom: 1rem;
 }
+.profbutton-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: -3rem 0 2rem;
+	text-align: center;
+	padding: 3rem 3rem;	
+}
+.profbutton-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 250px;
+	max-height: 20px;
+	padding: 1.25rem 1.5rem;
+	background-color: #05683b;
+	border-radius: 30px;
+}
+.profbutton-text {
+	font-size: 0.80rem;
+	color: #FFFFFF;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
 .gallery {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
