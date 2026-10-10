@@ -189,6 +189,48 @@ body {
 	justify-content: center;
 	font-weight: bold;
 }
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.info-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #05683b;
+  margin-bottom: 1rem;
+}
+
+.info-card-text {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #e7f1ec;
+  color: #05683b;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 .gallery {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
