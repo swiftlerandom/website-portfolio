@@ -161,7 +161,8 @@ body {
 	padding: 1.25rem 1.5rem;
 	background-color: #05683b;
 	border-radius: 30px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08)
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .profbutton-container-misc {
 	display: flex;
@@ -174,6 +175,7 @@ body {
 	border-radius: 30px;
 	border: 1px solid #808080;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border 0.2s ease;
 }
 .profbutton-text-prof {
 	font-size: 0.80rem;
@@ -195,33 +197,31 @@ body {
 	gap: 1.5rem;
 	margin-top: 1.5rem;
 }
-
 .info-card {
 	background: white;
 	border-radius: 20px;
 	padding: 2rem;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
-
-.info-card-title {
+.info-card-title {	
 	font-size: 1.25rem;
 	font-weight: 700;
 	color: #05683b;
 	margin-bottom: 1rem;
 }
-
 .info-card-text {
 	font-size: 0.95rem;
 	color: #333;
 	line-height: 1.6;
 }
-
 .tag-list {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 }
-
+.tag-list span {
+	transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
 .tag {
 	display: inline-block;
 	padding: 6px 14px;
@@ -264,12 +264,14 @@ body {
 	overflow: hidden;
 	border-radius: 20px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .gallery-item img {
 	width: 100%;
 	height: auto;
 	object-fit: cover;
 	display: block;
+	transition: transform 0.2s ease;
 }
 .gallery-caption {
 	padding: 0.85rem 1rem;
@@ -279,4 +281,28 @@ body {
 	align-items: center;
 	background: white;
 	border-top: 1px solid #eef1f0;
+}
+.profbutton-container-profiles:hover {
+	filter: brightness(0.9); 
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.profbutton-container-misc:hover {
+	filter: brightness(0.9);
+	background-color: #ccfbf1;
+	border: 1px solid #0f766e;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.tag-list span:hover {
+	filter: brightness(0.9); 
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.gallery-item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.gallery-item:hover img {
+	transform: scale(1.05);
 }
