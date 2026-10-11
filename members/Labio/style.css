@@ -190,46 +190,62 @@ body {
 	font-weight: bold;
 }
 .card-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .info-card {
-  background: white;
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+	background: white;
+	border-radius: 20px;
+	padding: 2rem;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .info-card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #05683b;
-  margin-bottom: 1rem;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #05683b;
+	margin-bottom: 1rem;
 }
 
 .info-card-text {
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.6;
+	font-size: 0.95rem;
+	color: #333;
+	line-height: 1.6;
 }
 
 .tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
 }
 
 .tag {
-  display: inline-block;
-  padding: 6px 14px;
-  background: #e7f1ec;
-  color: #05683b;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+	display: inline-block;
+	padding: 6px 14px;
+	background: #e7f1ec;
+	color: #05683b;
+	border-radius: 20px;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+.gallery-section {
+	margin: 1rem 0 1rem;
+	transform: translateY(35px);
+}
+.gallery-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #000000;
+	margin-bottom: 0.25rem;
+}
+
+.gallery-subtitle {
+	font-size: 0.9rem;
+	color: #808080;
+	margin: 0;
 }
 .gallery {
 	display: grid;
@@ -240,10 +256,9 @@ body {
 	justify-content: center;
 	max-width: 1500px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	margin: 0 auto;
-	margin: 1.5rem auto 0;
+	margin: 4rem auto 0;
 	border-radius: 20px;
-	background-color: white;
+	background: white;
 
 }
 .gallery img {
