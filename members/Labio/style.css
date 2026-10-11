@@ -241,7 +241,6 @@ body {
 	color: #000000;
 	margin-bottom: 0.25rem;
 }
-
 .gallery-subtitle {
 	font-size: 0.9rem;
 	color: #808080;
@@ -259,12 +258,25 @@ body {
 	margin: 4rem auto 0;
 	border-radius: 20px;
 	background: white;
-
+} 
+.gallery-item {
+	background: white;
+	overflow: hidden;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
-.gallery img {
+.gallery-item img {
 	width: 100%;
 	height: auto;
-	border-radius: 12px;
 	object-fit: cover;
 	display: block;
+}
+.gallery-caption {
+	padding: 0.85rem 1rem;
+	font-size: 0.85rem;
+	font-weight: bold;
+	color: #333;
+	align-items: center;
+	background: white;
+	border-top: 1px solid #eef1f0;
 }
