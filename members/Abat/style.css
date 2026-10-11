@@ -36,7 +36,7 @@ body {
 .profile-header-bg {
 	position: absolute;
 	inset: 0;
-	background-image: url('IMG20261002175141.png');
+	background-image: url('profileheader.png');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
