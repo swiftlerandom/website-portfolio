@@ -11,16 +11,13 @@ body {
 	padding: 0 1.25rem;
 }
 .sections {
-	border-radius: 20px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 	position: relative;
 	margin-top: 2rem;
-	background: white;
 }
 .landing-header {
 	position: relative;
 	overflow: hidden;
-	border-radius: 20px 20px 0 0;
+	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -29,7 +26,7 @@ body {
 	min-height: 28vh;
 	color: #05683b;
 	font-weight: bold;
-	gap: 2rem
+	gap: 2rem;
 }
 .landing-header h1 {
 	font-size: 3.5rem;
@@ -59,9 +56,20 @@ body {
 	font-weight: bold;
 	gap: 2rem
 }
-.landing-text {
+.description {
+	position: relative;
+	overflow: hidden;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
-	padding: 40px 0;
-	position: relative; 
-	z-index: 1;
+	padding: 3rem 2rem;
+	min-height: 28vh;
+	color: #05683b;
+	font-weight: bold;
+	gap: 2rem;
+	background: white;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
