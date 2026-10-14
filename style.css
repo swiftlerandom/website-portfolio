@@ -73,3 +73,30 @@ body {
 	background: white;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+.description p {
+	font-size: 1.5rem
+}
+.card-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+.info-card {
+	background: white;
+	border-radius: 20px;
+	padding: 2rem;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: #05683b;
+	font-weight: bold;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+	border: 1px solid transparent;
+	transition: background-color 0.2s ease, transform 0.2s ease, border 0.2s ease;
+}
+.info-card:hover {
+	background-color: #e7f1ec;
+	transform: translateY(-2px);
+	border: 1px solid #05683b;
+}
