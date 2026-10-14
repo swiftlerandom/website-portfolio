@@ -41,7 +41,7 @@ body {
 	justify-content: center;
 	color: #05683b;
 	font-weight: bold;
-	gap: 2rem
+	gap: 2rem;
 	font-size: 1.1rem;
 }
 .landing-header p {
@@ -54,7 +54,7 @@ body {
 	justify-content: center;
 	color: #05683b;
 	font-weight: bold;
-	gap: 2rem
+	gap: 2rem;
 }
 .description {
 	position: relative;
@@ -74,7 +74,7 @@ body {
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 .description p {
-	font-size: 1.5rem
+	font-size: 1.5rem;
 }
 .card-row {
 	display: grid;
