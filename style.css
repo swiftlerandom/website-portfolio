@@ -10,6 +10,9 @@ body {
 	min-height: 100vh;
 	padding: 0 1rem 2rem;
 }
+html {
+	scroll-behavior: smooth;
+}
 
 /* Master card wrapper */
 .page-wrapper {
