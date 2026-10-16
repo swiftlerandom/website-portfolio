@@ -2,21 +2,26 @@
 <html>
 <!-- Main HTML -->
 <head>
-	<title>Main Page</title>
+	<meta charset="UTF-8">
+	<title>FEUR Experience</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="../../nav/css/nav.css">
+	<link rel="stylesheet" href="nav/css/nav.css">
 </head>
 <body>
 	<div id="site-header"></div>
+
+	<!-- Landing header -->
 	<div class="container">
 		<div class="sections">
 			<div class="landing-header">
-				<span>BSIT FRESHMAN 1-2</span>
-				<h1>FEUR EXPERIENCE</h1>
+				<span>BSIT Freshman 1-2</span>
+				<h1>FEUR Experience</h1>
 				<p>Our first semester as new freshman students!</p>
 			</div>
 		</div>
 	</div>
+
+	<!-- Description -->
 	<div class="container">
 		<div class="sections">
 			<div class="description">
@@ -25,27 +30,70 @@
 		</div>
 	</div>
 
+	<!-- Our Group -->
 	<div class="container">
-		<div class="card-row">
-			<div class="info-card">
-				<h1>Jan Emannuel F. Labio</h1>
-			</div>
-			<div class="info-card">
-				<h1>Gabriel Yui F. Abat</h1>
-			</div>
-			<div class="info-card">
-				<h1>Maverick M. Junio</h1>
-			</div>
-			<div class="info-card">
-				<h1>Ziden Kyle A. Padua</h1>
-			</div>
-			<div class="info-card">
-				<h1>Al Jared F. Taglinao</h1>
-			</div>
+		<div class="section-header">
+			<h2 class="section-title">Our Group</h2>
+			<p class="section-subtitle">Click a card to view each member's page</p>
+		</div>
 
+		<div class="member-grid">
+			<a href="members/Abat/page.html" class="member-card">
+				<h2>Gabriel Yui F. Abat</h2>
+				<p>BSIT Freshman 1-2</p>
+				<span class="member-hint">View Profile →</span>
+			</a>
+			<a href="members/Junio/page.html" class="member-card">
+				<h2>Maverick M. Junio</h2>
+				<p>BSIT Freshman 1-2</p>
+				<span class="member-hint">View Profile →</span>
+			</a>
+			<a href="members/Labio/page.html" class="member-card">
+				<h2>Jan Emannuel F. Labio</h2>
+				<p>BSIT Freshman 1-2</p>
+				<span class="member-hint">View Profile →</span>
+			</a>
+			<a href="members/Padua/page.html" class="member-card">
+				<h2>Ziden Kyle A. Padua</h2>
+				<p>BSIT Freshman 1-2</p>
+				<span class="member-hint">View Profile →</span>
+			</a>
+			<a href="members/Taglinao/page.html" class="member-card">
+				<h2>Al Jared F. Taglinao</h2>
+				<p>BSIT Freshman 1-2</p>
+				<span class="member-hint">View Profile →</span>
+			</a>
 		</div>
 	</div>
 
-	<script src="../../nav/js/inject.js"></script>	
+	<!-- Gallery placeholder -->
+	<div class="container">
+		<div class="section-header">
+			<h2 class="section-title">Group Gallery</h2>
+			<p class="section-subtitle">Snapshots from our first semester together</p>
+		</div>
+
+		<div class="gallery">
+			<div class="gallery-item">
+				<img src="gallery/IMG_20260923_085401.jpg">
+				<div class="gallery-caption">Placeholder Caption</div>
+			</div>
+			<div class="gallery-item">
+				<img src="gallery/IMG_20260923_085401.jpg">
+				<div class="gallery-caption">Placeholder Caption</div>
+			</div>
+			<div class="gallery-item">
+				<img src="gallery/IMG_20260923_085401.jpg">
+				<div class="gallery-caption">Placeholder Caption</div>
+			</div>
+			<div class="gallery-item">
+				<img src="gallery/IMG_20260923_085401.jpg">
+				<div class="gallery-caption">Placeholder Caption</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="site-footer"></div>
+	<script src="nav/js/inject.js"></script>
 </body>
 </html>
