@@ -1,5 +1,5 @@
 ﻿Folder PATH listing
-Volume serial number is 00000248 0062:F600
+Volume serial number is 0000028E 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
@@ -7,8 +7,13 @@ C:.
 |   LICENSE
 |   README.md
 |   serve.bat
+|   style.css
 |   
 +---assets
+|   +---color-schemes
+|   |       IMG_20260618_034824_612.png
+|   |       IMG_20260926_090535_875.png
+|   |       
 |   +---nav
 |   |       Cainta.png
 |   |       logo.png
@@ -21,6 +26,7 @@ C:.
 |           gitworkflow.png
 |           
 +---gallery
+|   |   IMG_20260923_085401.jpg
 |   |   page.html
 |   |   style.css
 |   |   
@@ -28,22 +34,32 @@ C:.
 +---members
 |   +---Abat
 |   |       page.html
+|   |       pfp.png
+|   |       profileheader.png
 |   |       style.css
 |   |       
 |   +---Junio
 |   |       page.html
+|   |       pfp.png
+|   |       profileheader.png
 |   |       style.css
 |   |       
 |   +---Labio
 |   |       page.html
+|   |       pfp.png
+|   |       profileheader.png
 |   |       style.css
 |   |       
 |   +---Padua
 |   |       page.html
+|   |       pfp.png
+|   |       profileheader.png
 |   |       style.css
 |   |       
 |   \---Taglinao
 |           page.html
+|           pfp.png
+|           profileheader.png
 |           style.css
 |           
 +---misc
