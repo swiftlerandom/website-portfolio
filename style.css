@@ -21,31 +21,54 @@ body {
 	overflow: hidden;
 	border-radius: 20px;
 	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	padding: 3rem;
+	min-height: 60vh;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.landing-header-bg {
+	position: absolute;
+	inset: 0;
+	background-image: url('gallery/IMG_20260923_085401.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+.landing-header-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.35);
+	z-index: 1;
+}
+.landing-header-content {
+	position: relative;
+	z-index: 2;
+	text-align: left;
+	max-width: 600px;
+	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 3rem 2rem;
-	min-height: 28vh;
-	text-align: center;
 	gap: 1rem;
 }
-.landing-header h1 {
-	font-size: 3.5rem;
-	font-weight: 800;
-	color: #05683b;
-}
-.landing-header span {
+.landing-header-content span {
 	font-size: 0.85rem;
 	font-weight: 600;
 	letter-spacing: 0.15em;
 	text-transform: uppercase;
-	color: #05683b;
+	color: #e7f1ec;
 }
-.landing-header p {
+.landing-header-content h1 {
+	font-size: 3.5rem;
+	font-weight: 800;
+	color: #FFFFFF;
+	line-height: 1;
+}
+.landing-header-content p {
 	font-size: 1rem;
 	font-weight: 400;
-	color: #808080;
-	max-width: 560px;
+	color: #FFFFFF;
+	max-width: 500px;
 }
 
 /* Description card */
