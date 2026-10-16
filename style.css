@@ -8,13 +8,13 @@ body {
 	color: #333;
 	font-family: sans-serif;
 	min-height: 100vh;
-	padding: 1.5rem 1rem 3rem;
+	padding: 0 1rem 3rem;   /* ← was: 1.5rem 1rem 3rem */
 }
 
 /* Master card wrapper */
 .page-wrapper {
 	max-width: 1100px;
-	margin: 1.5rem auto 0;
+	margin: 0.5rem auto 0;   /* ← was: 1.5rem auto 0 */
 }
 .page-card {
 	background: white;

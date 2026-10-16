@@ -1,5 +1,5 @@
 ﻿Folder PATH listing
-Volume serial number is 0000028E 0062:F600
+Volume serial number is 000001C1 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
@@ -10,6 +10,9 @@ C:.
 |   style.css
 |   
 +---assets
+|   +---backgrounds
+|   |       background.jpg
+|   |       
 |   +---color-schemes
 |   |       IMG_20260618_034824_612.png
 |   |       IMG_20260926_090535_875.png
@@ -26,6 +29,7 @@ C:.
 |           gitworkflow.png
 |           
 +---gallery
+|   |   gallery.html
 |   |   IMG_20260923_085401.jpg
 |   |   page.html
 |   |   style.css
