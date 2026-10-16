@@ -5,7 +5,7 @@
 }
 
 /* Sticky wrapper */
-.site-header {
+#site-header {
 	position: sticky;
 	top: 1rem;
 	z-index: 100;
