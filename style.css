@@ -40,7 +40,7 @@ body {
 .landing-header-bg {
 	position: absolute;
 	inset: 0;
-	background-image: url('gallery/IMG_20260923_085401.jpg');
+	background-image: url('assets/backgrounds/landing-page.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
