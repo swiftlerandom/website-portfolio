@@ -113,45 +113,101 @@ html {
 	color: #808080;
 }
 
-/* Member grid */
-.member-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-	gap: 0.75rem;
-	margin-top: 0.75rem;
+.member-strip {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1rem;
+	align-items: stretch; /* Ensures all cards in a row are the same height */
 }
+
 .member-card {
-	background: white;
-	border-radius: 14px;
-	padding: 1.25rem 1rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-	border: 1px solid #eef1f0;
+	flex: 1 1 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
-	text-decoration: none;
-	color: inherit;
-	transition: background-color 0.2s ease, transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+	gap: 0.5rem;
+	padding: 1.5rem 1rem;
+	background: white;
+	border: 1px solid #eef1f0;
+	border-radius: 16px;
+	/* removed text-decoration and color: inherit since it's a div now */
+	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Hover effect */
+.member-card:hover {
+	transform: translateY(-4px);
+	border-color: #05683b;
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.member-card img {
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 3px solid #e7f1ec;
+	margin-bottom: 0.5rem;
+}
+
 .member-card h2 {
-	font-size: 0.95rem;
+	font-size: 1rem;
 	font-weight: 700;
 	color: #05683b;
-	margin-bottom: 0.2rem;
+	line-height: 1.2;
 }
+
 .member-card p {
-	font-size: 0.75rem;
+	font-size: 0.8rem;
 	color: #808080;
-	margin-bottom: 0.6rem;
+	margin-bottom: 0.5rem;
 }
-.member-hint {
-	font-size: 0.7rem;
-	font-weight: 600;
+
+/* New styles for the expanded content */
+.member-details {
+	width: 100%;
+	text-align: left;
+	margin-top: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.member-block {
+	background: #f2f5f3;
+	padding: 0.75rem;
+	border-radius: 10px;
+}
+
+.member-block h3 {
+	font-size: 0.8rem;
+	font-weight: 700;
 	color: #05683b;
+	margin-bottom: 0.25rem;
 }
-.member-card:hover {
-	background-color: #e7f1ec;
-	transform: translateY(-3px);
-	border-color: #05683b;
-	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+.member-block p {
+	font-size: 0.75rem;
+	color: #333;
+	margin: 0;
+	line-height: 1.4;
+}
+
+.member-block .tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}
+
+.member-block .tag {
+	padding: 4px 8px;
+	background: #e7f1ec;
+	color: #05683b;
+	border-radius: 12px;
+	font-size: 0.65rem;
+	font-weight: 600;
 }
 
 /* Gallery */
