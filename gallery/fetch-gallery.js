@@ -19,6 +19,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const el = document.querySelector('.gallery');
 	if (!el) return;
 
+	const lightbox = document.getElementById('lightbox');
+	const lightboxImg = document.getElementById('lightbox-img');
+	const close = () => lightbox.classList.remove('active');
+
+	el.addEventListener('click', e => {
+		if (e.target.tagName !== 'IMG') return;
+		lightboxImg.src = e.target.src;
+		lightboxImg.alt = e.target.alt;
+		lightbox.classList.add('active');
+	});
+	lightbox.addEventListener('click', close);
+	document.addEventListener('keydown', e => e.key === 'Escape' && close());
+
 	let cache;
 	try { cache = JSON.parse(localStorage.getItem(KEY)); } catch {}
 	if (cache && Date.now() - cache.timestamp < TTL) return render(el, cache.data);
