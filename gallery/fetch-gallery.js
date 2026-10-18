@@ -1,4 +1,4 @@
-const GITHUB_API = 'https://api.github.com/repos/swiftlyrandom/website-portfolio/contents/gallery';
+const GITHUB_API = 'https://api.github.com/repos/swiftlerandom/website-portfolio/contents/gallery';
 const CACHE_KEY = 'gallery-cache';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
