@@ -1,63 +1,38 @@
-const GITHUB_API = 'https://api.github.com/repos/swiftlerandom/website-portfolio/contents/gallery';
-const CACHE_KEY = 'gallery-cache';
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const API = 'https://api.github.com/repos/swiftlerandom/website-portfolio/contents/gallery';
+const KEY = 'gallery-cache';
+const TTL = 300000;
 
-async function loadGallery() {
-	const container = document.querySelector('.gallery');
-	if (!container) return;
-
-	// Check cache first
-	const cached = localStorage.getItem(CACHE_KEY);
-	if (cached) {
-		const { timestamp, data } = JSON.parse(cached);
-		if (Date.now() - timestamp < CACHE_TTL) {
-			renderGallery(container, data);
-			return;
-		}
-	}
-
-	// Fetch fresh data
-	try {
-		const res = await fetch(GITHUB_API);
-		if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
-		const files = await res.json();
-		
-		const imageFiles = files
-			.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name))
-			.map(f => f.download_url);
-
-		// Save to cache
-		localStorage.setItem(CACHE_KEY, JSON.stringify({
-			timestamp: Date.now(),
-			data: imageFiles
-		}));
-
-		renderGallery(container, imageFiles);
-	} catch (err) {
-		console.error('Gallery failed to load:', err);
-		container.innerHTML = '<p style="color: #808080; padding: 1rem;">Gallery could not be loaded right now. Please refresh later.</p>';
-	}
-}
-
-function renderGallery(container, imageUrls) {
-	container.innerHTML = '';
-	imageUrls.forEach(url => {
+function render(el, urls) {
+	el.replaceChildren(...urls.map(url => {
+		const name = decodeURIComponent(url.split('/').pop());
 		const item = document.createElement('div');
 		item.className = 'gallery-item';
-		
-		const img = document.createElement('img');
-		img.src = url;
-		img.alt = 'Gallery Image';
-		
-		const caption = document.createElement('div');
-		caption.className = 'gallery-caption';
-		caption.textContent = url.split('/').pop(); // Uses filename as caption
-		
-		item.appendChild(img);
-		item.appendChild(caption);
-		container.appendChild(item);
-	});
+		item.innerHTML = '<img loading="lazy" decoding="async"><div class="gallery-caption"></div>';
+		item.firstChild.src = url;
+		item.firstChild.alt = name;
+		item.lastChild.textContent = name;
+		return item;
+	}));
 }
 
-// Run when page loads
-document.addEventListener('DOMContentLoaded', loadGallery);
+document.addEventListener('DOMContentLoaded', async () => {
+	const el = document.querySelector('.gallery');
+	if (!el) return;
+
+	let cache;
+	try { cache = JSON.parse(localStorage.getItem(KEY)); } catch {}
+	if (cache && Date.now() - cache.timestamp < TTL) return render(el, cache.data);
+
+	try {
+		const res = await fetch(API);
+		if (!res.ok) throw new Error(res.status);
+		const data = (await res.json())
+			.filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+			.map(f => f.download_url);
+		try { localStorage.setItem(KEY, JSON.stringify({ timestamp: Date.now(), data })); } catch {}
+		render(el, data);
+	} catch {
+		if (cache) render(el, cache.data);
+		else el.innerHTML = '<p style="color:#808080;padding:1rem">Gallery could not be loaded right now. Please refresh later.</p>';
+	}
+});
