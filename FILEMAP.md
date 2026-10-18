@@ -1,5 +1,5 @@
 ﻿Folder PATH listing
-Volume serial number is 000001C1 0062:F600
+Volume serial number is 00000214 0062:F600
 C:.
 |   Devlogs.txt
 |   FILEMAP.md
@@ -12,10 +12,23 @@ C:.
 +---assets
 |   +---backgrounds
 |   |       background.jpg
+|   |       kardzhali-reservoir-bulgaria-arda-river-landscape-sunrise-3840x2160-3710.jpg
+|   |       landing-page.jpg
+|   |       landscape-layers-3840x2160-27382.png
+|   |       os-x-lion-autumn-3840x2160-24055.jpg
+|   |       pastel-sunset-lake-3840x2160-21138.jpg
+|   |       snow-mountains-3840x2160-25476.jpg
 |   |       
 |   +---color-schemes
 |   |       IMG_20260618_034824_612.png
 |   |       IMG_20260926_090535_875.png
+|   |       
+|   +---memberpfp
+|   |       abatpfp.png
+|   |       juniopfp.png
+|   |       labiopfp.png
+|   |       paduapfp.png
+|   |       taglinaopfp.png
 |   |       
 |   +---nav
 |   |       Cainta.png
@@ -29,43 +42,8 @@ C:.
 |           gitworkflow.png
 |           
 +---gallery
-|   |   gallery.html
-|   |   IMG_20260923_085401.jpg
-|   |   page.html
-|   |   style.css
-|   |   
-|   \---images
-+---members
-|   +---Abat
-|   |       page.html
-|   |       pfp.png
-|   |       profileheader.png
-|   |       style.css
-|   |       
-|   +---Junio
-|   |       page.html
-|   |       pfp.png
-|   |       profileheader.png
-|   |       style.css
-|   |       
-|   +---Labio
-|   |       page.html
-|   |       pfp.png
-|   |       profileheader.png
-|   |       style.css
-|   |       
-|   +---Padua
-|   |       page.html
-|   |       pfp.png
-|   |       profileheader.png
-|   |       style.css
-|   |       
-|   \---Taglinao
-|           page.html
-|           pfp.png
-|           profileheader.png
-|           style.css
-|           
+|       IMG_20260923_085401.jpg
+|       
 +---misc
 |       page.html
 |       style.css
