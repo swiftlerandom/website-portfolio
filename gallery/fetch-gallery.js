@@ -1,5 +1,5 @@
 const API = 'https://api.github.com/repos/swiftlerandom/website-portfolio/contents/gallery';
-const KEY = 'gallery-cache-v2';
+const KEY = 'gallery-cache-v3';
 const TTL = 300000;
 const PREVIEW = 4;
 
@@ -20,24 +20,35 @@ function parseVideos(text) {
 async function fetchCategories() {
     const nav = document.getElementById('category-nav');
     const root = document.getElementById('categories');
-    const res = await fetch(API);
-    if (!res.ok) throw new Error(res.status);
-    const dirs = (await res.json()).filter(f => f.type === 'dir');
 
-    const results = await Promise.all(dirs.map(async dir => {
-        const dirRes = await fetch(dir.url);
-        if (!dirRes.ok) return null;
-        const files = await dirRes.json();
-        const images = files
-            .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-            .map(f => ({ type: 'image', url: f.download_url, name: f.name }));
-        const list = files.find(f => f.type === 'file' && /^videos\.txt$/i.test(f.name));
-        const videos = list ? parseVideos(await (await fetch(list.download_url)).text()) : [];
-        return [dir.name, [...videos, ...images]];
-    }));
+    let cache;
+    try { cache = JSON.parse(localStorage.getItem(KEY)); } catch {}
+    if (cache && Date.now() - cache.timestamp < TTL) return renderCategories(nav, root, cache.data);
 
-    results.forEach(r => r && r[1].length && (foldersData[r[0]] = r[1]));
-    renderCategories(nav, root, foldersData);
+    try {
+        const res = await fetch(API);
+        if (!res.ok) throw new Error(res.status);
+        const dirs = (await res.json()).filter(f => f.type === 'dir');
+
+        const results = await Promise.all(dirs.map(async dir => {
+            const dirRes = await fetch(dir.url);
+            if (!dirRes.ok) throw new Error(dirRes.status);
+            const files = await dirRes.json();
+            const images = files
+                .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+                .map(f => ({ type: 'image', url: f.download_url, name: f.name }));
+            const list = files.find(f => f.type === 'file' && /^videos\.txt$/i.test(f.name));
+            const videos = list ? parseVideos(await (await fetch(list.download_url)).text()) : [];
+            return [dir.name, [...videos, ...images]];
+        }));
+
+        results.forEach(r => r[1].length && (foldersData[r[0]] = r[1]));
+        try { localStorage.setItem(KEY, JSON.stringify({ timestamp: Date.now(), data: foldersData })); } catch {}
+        renderCategories(nav, root, foldersData);
+    } catch (err) {
+        if (cache) return renderCategories(nav, root, cache.data);
+        throw err;
+    }
 }
 
 function renderCategories(nav, root, data) {
