@@ -5,24 +5,38 @@ const PREVIEW = 4;
 
 const foldersData = {};
 
+function parseVideos(text) {
+    return text.split('\n')
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith('#'))
+        .map(l => {
+            const [link, title] = l.split('|').map(s => s.trim());
+            const id = (link.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/) || [])[1];
+            return id && { type: 'video', id, name: title || 'Video' };
+        })
+        .filter(Boolean);
+}
+
 async function fetchCategories() {
     const nav = document.getElementById('category-nav');
     const root = document.getElementById('categories');
     const res = await fetch(API);
     if (!res.ok) throw new Error(res.status);
-    const contents = await res.json(); 
-    const dirs = contents.filter(f => f.type === 'dir');
-    for (const dir of dirs) {
+    const dirs = (await res.json()).filter(f => f.type === 'dir');
+
+    const results = await Promise.all(dirs.map(async dir => {
         const dirRes = await fetch(dir.url);
-        if (!dirRes.ok) continue;
-        const dirContents = await dirRes.json();
-        const images = dirContents
+        if (!dirRes.ok) return null;
+        const files = await dirRes.json();
+        const images = files
             .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-            .map(f => ({ url: f.download_url, name: f.name }));
-        if (images.length > 0) {
-            foldersData[dir.name] = images;
-        }
-    }
+            .map(f => ({ type: 'image', url: f.download_url, name: f.name }));
+        const list = files.find(f => f.type === 'file' && /^videos\.txt$/i.test(f.name));
+        const videos = list ? parseVideos(await (await fetch(list.download_url)).text()) : [];
+        return [dir.name, [...videos, ...images]];
+    }));
+
+    results.forEach(r => r && r[1].length && (foldersData[r[0]] = r[1]));
     renderCategories(nav, root, foldersData);
 }
 
@@ -31,40 +45,42 @@ function renderCategories(nav, root, data) {
     root.innerHTML = '';
     let total = 0;
 
-    Object.entries(data).forEach(([name, images]) => total += images.length);
+    Object.values(data).forEach(items => total += items.length);
     const allBtn = document.createElement('button');
     allBtn.dataset.target = 'all';
     allBtn.className = 'active';
     allBtn.innerHTML = `All<small>${total}</small>`;
     nav.appendChild(allBtn);
 
-    Object.entries(data).forEach(([folderName, images], i) => {
+    Object.entries(data).forEach(([folderName, items], i) => {
         const id = 'cat-' + i;
-        
+
         const pill = document.createElement('button');
         pill.dataset.target = id;
-        pill.innerHTML = `${folderName}<small>${images.length}</small>`;
+        pill.innerHTML = `${folderName}<small>${items.length}</small>`;
         nav.appendChild(pill);
 
         const section = document.createElement('section');
         section.className = 'category';
         section.id = id;
-        
+
         let galleryHTML = '';
-        images.forEach((img, n) => {
-            const cleanName = img.name.replace(/\.[^/.]+$/, "").replace(/_/g, ' ').replace(/ - Copy( \(\d+\))?/g, '');
-            const isExtra = n >= PREVIEW;
-            galleryHTML += `<div class="gallery-item" ${isExtra ? 'hidden data-extra' : ''}>
-                <img src="${img.url}" alt="${cleanName}" loading="lazy">
-                <div class="gallery-caption">${cleanName}</div>
+        items.forEach((item, n) => {
+            const isVideo = item.type === 'video';
+            const label = isVideo ? item.name : item.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ').replace(/ - Copy( \(\d+\))?/g, '');
+            const src = isVideo ? `https://i.ytimg.com/vi/${item.id}/hqdefault.jpg` : item.url;
+            galleryHTML += `<div class="gallery-item" ${n >= PREVIEW ? 'hidden data-extra' : ''}>
+                <img src="${src}" ${isVideo ? `data-video="${item.id}"` : ''} alt="${label}" loading="lazy">
+                ${isVideo ? '<span class="play">▶</span>' : ''}
+                <div class="gallery-caption">${label}</div>
             </div>`;
         });
 
         section.innerHTML = `
             <div class="category-head">
                 <div class="category-icon">📁</div>
-                <div><h3>${folderName}</h3><p>${images.length} images</p></div>
-                ${images.length > PREVIEW ? `<button class="category-toggle" data-open="0">Show all</button>` : ''}
+                <div><h3>${folderName}</h3><p>${items.length} items</p></div>
+                ${items.length > PREVIEW ? `<button class="category-toggle" data-open="0">Show all</button>` : ''}
             </div>
             <div class="gallery">${galleryHTML}</div>
         `;
@@ -73,6 +89,11 @@ function renderCategories(nav, root, data) {
 
     setupInteractions(nav, root);
 }
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxVideo = document.getElementById('lightbox-video');
+const lightboxCaption = document.getElementById('lightbox-caption');
 
 function setupInteractions(nav, root) {
     nav.addEventListener('click', e => {
@@ -99,18 +120,23 @@ function setupInteractions(nav, root) {
             toggle.textContent = open ? 'Show all' : 'Show less';
             return;
         }
-        
+
         if (e.target.tagName === 'IMG') {
-            document.getElementById('lightbox-img').src = e.target.src;
-            document.getElementById('lightbox-img').alt = e.target.alt;
-            document.getElementById('lightbox-caption').textContent = e.target.alt;
-            document.getElementById('lightbox').classList.add('active');
+            const id = e.target.dataset.video;
+            lightbox.classList.toggle('video', !!id);
+            if (id) lightboxVideo.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+            else lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
+            lightboxCaption.textContent = e.target.alt;
+            lightbox.classList.add('active');
         }
     });
 }
 
-const lightbox = document.getElementById('lightbox');
-const close = () => lightbox.classList.remove('active');
+const close = () => {
+    lightbox.classList.remove('active', 'video');
+    lightboxVideo.src = 'about:blank';
+};
 lightbox.addEventListener('click', close);
 document.addEventListener('keydown', e => e.key === 'Escape' && close());
 

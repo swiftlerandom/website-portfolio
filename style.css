@@ -219,6 +219,7 @@ html {
 .gallery-item {
 	background: white;
 	overflow: hidden;
+	position: relative;
 	border-radius: 14px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -332,3 +333,29 @@ html {
 	font-size: 0.85rem;
 	text-align: center;
 }
+
+.play {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 160px;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+	font-size: 1.6rem;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.lightbox-video {
+	display: none;
+	width: min(90vw, 1000px);
+	aspect-ratio: 16 / 9;
+	border: 0;
+	border-radius: 8px;
+	background: #000;
+}
+
+.lightbox.video .lightbox-video { display: block; }
+.lightbox.video .lightbox-img { display: none; }
