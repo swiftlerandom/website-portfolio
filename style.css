@@ -1,14 +1,16 @@
 /* Index CSS */
 body {
-	background-image: url('assets/backgrounds/background.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
 	color: #333;
 	font-family: sans-serif;
 	min-height: 100vh;
 	padding: 0 1rem 2rem;
+}
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: url('assets/backgrounds/background.jpg') center / cover no-repeat;
 }
 html {
 	scroll-behavior: smooth;
