@@ -1,0 +1,31 @@
+name: Optimize gallery
+on:
+  push:
+    paths: ['gallery/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y imagemagick webp
+      - name: Resize and make thumbnails
+        run: |
+          find gallery -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -not -path '*/thumbs/*' -print0 |
+          while IFS= read -r -d '' f; do
+            dir=$(dirname "$f"); name=$(basename "${f%.*}")
+            read w h < <(identify -format '%w %h' "$f[0]")
+            if [ "$w" -gt 1600 ] || [ "$h" -gt 1600 ]; then
+              mogrify -auto-orient -resize '1600x1600>' -quality 82 "$f"
+            fi
+            mkdir -p "$dir/thumbs"
+            [ -f "$dir/thumbs/$name.webp" ] || convert "$f[0]" -auto-orient -thumbnail '500x500>' -quality 75 "$dir/thumbs/$name.webp"
+          done
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add gallery
+          git diff --cached --quiet || (git commit -m "Optimize gallery images" && git pull --rebase && git push)
