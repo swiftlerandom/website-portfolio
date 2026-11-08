@@ -16,12 +16,12 @@ jobs:
           find gallery -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -not -path '*/thumbs/*' -print0 |
           while IFS= read -r -d '' f; do
             dir=$(dirname "$f"); name=$(basename "${f%.*}")
-            read w h < <(identify -format '%w %h' "$f[0]")
+            read w h < <(identify -format '%w %h\n' "$f[0]") || { echo "skipped: $f"; continue; }
             if [ "$w" -gt 1600 ] || [ "$h" -gt 1600 ]; then
-              mogrify -auto-orient -resize '1600x1600>' -quality 82 "$f"
+              mogrify -auto-orient -resize '1600x1600>' -quality 82 "$f" || echo "resize failed: $f"
             fi
             mkdir -p "$dir/thumbs"
-            [ -f "$dir/thumbs/$name.webp" ] || convert "$f[0]" -auto-orient -thumbnail '500x500>' -quality 75 "$dir/thumbs/$name.webp"
+            [ -f "$dir/thumbs/$name.webp" ] || convert "$f[0]" -auto-orient -thumbnail '500x500>' -quality 75 "$dir/thumbs/$name.webp" || echo "thumb failed: $f"
           done
       - name: Commit
         run: |
