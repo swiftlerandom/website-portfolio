@@ -361,3 +361,6 @@ html {
 
 .lightbox.video .lightbox-video { display: block; }
 .lightbox.video .lightbox-img { display: none; }
+
+.category-more { display: block; margin: .9rem auto 0; }
+.category-more[hidden] { display: none; }

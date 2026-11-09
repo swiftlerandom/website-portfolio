@@ -1,55 +1,6 @@
-const API = 'https://api.github.com/repos/swiftlerandom/website-portfolio/contents/gallery';
-const KEY = 'gallery-cache-v3';
-const TTL = 300000;
+const MANIFEST = 'gallery/manifest.json';
 const PREVIEW = 4;
-
-const foldersData = {};
-
-function parseVideos(text) {
-    return text.split('\n')
-        .map(l => l.trim())
-        .filter(l => l && !l.startsWith('#'))
-        .map(l => {
-            const [link, title] = l.split('|').map(s => s.trim());
-            const id = (link.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/) || [])[1];
-            return id && { type: 'video', id, name: title || 'Video' };
-        })
-        .filter(Boolean);
-}
-
-async function fetchCategories() {
-    const nav = document.getElementById('category-nav');
-    const root = document.getElementById('categories');
-
-    let cache;
-    try { cache = JSON.parse(localStorage.getItem(KEY)); } catch {}
-    if (cache && Date.now() - cache.timestamp < TTL) return renderCategories(nav, root, cache.data);
-
-    try {
-        const res = await fetch(API);
-        if (!res.ok) throw new Error(res.status);
-        const dirs = (await res.json()).filter(f => f.type === 'dir');
-
-        const results = await Promise.all(dirs.map(async dir => {
-            const dirRes = await fetch(dir.url);
-            if (!dirRes.ok) throw new Error(dirRes.status);
-            const files = await dirRes.json();
-            const images = files
-                .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-                .map(f => ({ type: 'image', url: f.download_url, name: f.name }));
-            const list = files.find(f => f.type === 'file' && /^videos\.txt$/i.test(f.name));
-            const videos = list ? parseVideos(await (await fetch(list.download_url)).text()) : [];
-            return [dir.name, [...videos, ...images]];
-        }));
-
-        results.forEach(r => r[1].length && (foldersData[r[0]] = r[1]));
-        try { localStorage.setItem(KEY, JSON.stringify({ timestamp: Date.now(), data: foldersData })); } catch {}
-        renderCategories(nav, root, foldersData);
-    } catch (err) {
-        if (cache) return renderCategories(nav, root, cache.data);
-        throw err;
-    }
-}
+const BATCH = 12;
 
 function renderCategories(nav, root, data) {
     nav.innerHTML = '';
@@ -76,12 +27,12 @@ function renderCategories(nav, root, data) {
         section.id = id;
 
         let galleryHTML = '';
-        items.forEach((item, n) => {
+        items.forEach(item => {
             const isVideo = item.type === 'video';
             const label = isVideo ? item.name : item.name.replace(/\.[^/.]+$/, '').replace(/_/g, ' ').replace(/ - Copy( \(\d+\))?/g, '');
-            const src = isVideo ? `https://i.ytimg.com/vi/${item.id}/hqdefault.jpg` : item.url;
-            galleryHTML += `<div class="gallery-item" ${n >= PREVIEW ? 'hidden data-extra' : ''}>
-                <img src="${src}" ${isVideo ? `data-video="${item.id}"` : ''} alt="${label}" loading="lazy">
+            const src = isVideo ? `https://i.ytimg.com/vi/${item.id}/hqdefault.jpg` : item.thumb;
+            galleryHTML += `<div class="gallery-item" hidden>
+                <img data-src="${src}" ${isVideo ? `data-video="${item.id}"` : `data-full="${item.src}"`} alt="${label}" loading="lazy" decoding="async">
                 ${isVideo ? '<span class="play">▶</span>' : ''}
                 <div class="gallery-caption">${label}</div>
             </div>`;
@@ -91,52 +42,76 @@ function renderCategories(nav, root, data) {
             <div class="category-head">
                 <div class="category-icon">📁</div>
                 <div><h3>${folderName}</h3><p>${items.length} items</p></div>
-                ${items.length > PREVIEW ? `<button class="category-toggle" data-open="0">Show all</button>` : ''}
+                <button class="category-toggle" data-view="${id}" hidden>View all</button>
             </div>
             <div class="gallery">${galleryHTML}</div>
+            <button class="category-toggle category-more" hidden>Load more</button>
         `;
         root.appendChild(section);
     });
 
     setupInteractions(nav, root);
+    select(nav, root, 'all');
+}
+
+function setShown(sec, n, single) {
+    const items = sec.querySelectorAll('.gallery-item');
+    items.forEach((el, i) => {
+        el.hidden = i >= n;
+        const img = el.firstElementChild;
+        if (i < n && img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+    });
+    sec.dataset.shown = n;
+    sec.querySelector('[data-view]').hidden = single || items.length <= PREVIEW;
+    const more = sec.querySelector('.category-more');
+    more.hidden = !single || n >= items.length;
+    more.textContent = `Load more (${items.length - n})`;
+}
+
+function select(nav, root, target) {
+    const single = target !== 'all';
+    nav.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.target === target));
+    root.querySelectorAll('.category').forEach(sec => {
+        sec.hidden = single && sec.id !== target;
+        if (!sec.hidden) setShown(sec, single ? BATCH : PREVIEW, single);
+    });
 }
 
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxVideo = document.getElementById('lightbox-video');
 const lightboxCaption = document.getElementById('lightbox-caption');
+let current = '';
 
 function setupInteractions(nav, root) {
     nav.addEventListener('click', e => {
         const btn = e.target.closest('button');
-        if (!btn) return;
-        nav.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
-        root.querySelectorAll('.category').forEach(c => {
-            c.hidden = btn.dataset.target !== 'all' && c.id !== btn.dataset.target;
-        });
-        root.querySelectorAll('.category').forEach(c => {
-            const single = btn.dataset.target !== 'all';
-            const toggle = c.querySelector('.category-toggle');
-            c.querySelectorAll('[data-extra]').forEach(x => x.hidden = !single);
-            if (toggle) { toggle.hidden = single; toggle.dataset.open = '0'; toggle.textContent = 'Show all'; }
-        });
+        if (btn) select(nav, root, btn.dataset.target);
     });
 
     root.addEventListener('click', e => {
-        const toggle = e.target.closest('.category-toggle');
-        if (toggle) {
-            const open = toggle.dataset.open === '1';
-            toggle.closest('.category').querySelectorAll('[data-extra]').forEach(x => x.hidden = open);
-            toggle.dataset.open = open ? '0' : '1';
-            toggle.textContent = open ? 'Show all' : 'Show less';
-            return;
+        const view = e.target.closest('[data-view]');
+        if (view) return nav.querySelector(`[data-target="${view.dataset.view}"]`).click();
+
+        const more = e.target.closest('.category-more');
+        if (more) {
+            const sec = more.closest('.category');
+            return setShown(sec, +sec.dataset.shown + BATCH, true);
         }
 
         if (e.target.tagName === 'IMG') {
             const id = e.target.dataset.video;
             lightbox.classList.toggle('video', !!id);
-            if (id) lightboxVideo.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-            else lightboxImg.src = e.target.src;
+            if (id) {
+                lightboxVideo.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+            } else {
+                const full = e.target.dataset.full;
+                current = full;
+                lightboxImg.src = e.target.src;
+                const big = new Image();
+                big.onload = () => current === full && (lightboxImg.src = full);
+                big.src = full;
+            }
             lightboxImg.alt = e.target.alt;
             lightboxCaption.textContent = e.target.alt;
             lightbox.classList.add('active');
@@ -145,18 +120,23 @@ function setupInteractions(nav, root) {
 }
 
 const close = () => {
+    current = '';
     lightbox.classList.remove('active', 'video');
     lightboxVideo.src = 'about:blank';
 };
 lightbox.addEventListener('click', close);
 document.addEventListener('keydown', e => e.key === 'Escape' && close());
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('categories');
     if (!container) return;
 
-    fetchCategories().catch(err => {
+    try {
+        const res = await fetch(MANIFEST);
+        if (!res.ok) throw new Error(res.status);
+        renderCategories(document.getElementById('category-nav'), container, await res.json());
+    } catch (err) {
         console.error(err);
         container.innerHTML = '<p style="color:#808080;padding:1rem">Gallery could not be loaded right now. Please refresh later.</p>';
-    });
+    }
 });
