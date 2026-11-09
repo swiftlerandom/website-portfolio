@@ -1,7 +1,7 @@
 name: Optimize gallery
 on:
   push:
-    paths: ['gallery/**']
+    paths: ['gallery/**', '!gallery/manifest.json', '!gallery/fetch-gallery.js']
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,6 +23,33 @@ jobs:
             mkdir -p "$dir/thumbs"
             [ -f "$dir/thumbs/$name.webp" ] || convert "$f[0]" -auto-orient -thumbnail '500x500>' -quality 75 "$dir/thumbs/$name.webp" || echo "thumb failed: $f"
           done
+      - name: Build manifest
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const enc = p => p.split('/').map(encodeURIComponent).join('/');
+          const manifest = {};
+          for (const dir of fs.readdirSync('gallery', { withFileTypes: true })) {
+            if (!dir.isDirectory()) continue;
+            const base = `gallery/${dir.name}`;
+            const files = fs.readdirSync(base, { withFileTypes: true }).filter(f => f.isFile()).map(f => f.name).sort();
+            const videos = [];
+            const list = files.find(f => /^videos\.txt$/i.test(f));
+            if (list) for (const line of fs.readFileSync(`${base}/${list}`, 'utf8').split('\n')) {
+              const l = line.trim();
+              if (!l || l.startsWith('#')) continue;
+              const [link, title] = l.split('|').map(s => s.trim());
+              const id = (link.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/) || [])[1];
+              if (id) videos.push({ type: 'video', id, name: title || 'Video' });
+            }
+            const images = files.filter(f => /\.(jpe?g|png|webp)$/i.test(f)).map(f => {
+              const thumb = `${base}/thumbs/${f.replace(/\.[^.]+$/, '')}.webp`;
+              return { type: 'image', name: f, src: enc(`${base}/${f}`), thumb: enc(fs.existsSync(thumb) ? thumb : `${base}/${f}`) };
+            });
+            if (videos.length + images.length) manifest[dir.name] = [...videos, ...images];
+          }
+          fs.writeFileSync('gallery/manifest.json', JSON.stringify(manifest));
+          EOF
       - name: Commit
         run: |
           git config user.name github-actions
