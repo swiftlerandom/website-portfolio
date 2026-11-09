@@ -1,6 +1,9 @@
 # Website Group Activity: FEUR Experience
 Website of our group members showcasing our student experience for the first semester as freshman students of FEUR. 
 
+# Our Website Link:
+- [WebsiteLink](https://feur-experience.feur-bsit-swiftlerandom.workers.dev/) | https://feur-experience.feur-bsit-swiftlerandom.workers.dev/
+
 # Dev Log
 Please read and update devlog if you can, or just talk in our group chat. Run the .bat file to open the localhost server and website, keep the terminal open and close when you're done.
 
