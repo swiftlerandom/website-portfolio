@@ -62,14 +62,17 @@ function setShown(sec, n, single) {
         if (i < n && img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
     });
     sec.dataset.shown = n;
-    sec.querySelector('[data-view]').hidden = single || items.length <= PREVIEW;
+    const view = sec.querySelector('[data-view]');
+    view.hidden = single || items.length <= PREVIEW;
+    view.textContent = n > PREVIEW ? 'Show less' : 'Show all';
     const more = sec.querySelector('.category-more');
-    more.hidden = !single || n >= items.length;
+    more.hidden = n <= PREVIEW || n >= items.length;
     more.textContent = `Load more (${items.length - n})`;
 }
 
 function select(nav, root, target) {
     const single = target !== 'all';
+    root.dataset.single = single ? '1' : '';
     nav.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.target === target));
     root.querySelectorAll('.category').forEach(sec => {
         sec.hidden = single && sec.id !== target;
@@ -91,12 +94,18 @@ function setupInteractions(nav, root) {
 
     root.addEventListener('click', e => {
         const view = e.target.closest('[data-view]');
-        if (view) return nav.querySelector(`[data-target="${view.dataset.view}"]`).click();
+        if (view) {
+            const sec = view.closest('.category');
+            const collapse = +sec.dataset.shown > PREVIEW;
+            setShown(sec, collapse ? PREVIEW : BATCH, false);
+            if (collapse) sec.scrollIntoView({ block: 'start' });
+            return;
+        }
 
         const more = e.target.closest('.category-more');
         if (more) {
             const sec = more.closest('.category');
-            return setShown(sec, +sec.dataset.shown + BATCH, true);
+            return setShown(sec, +sec.dataset.shown + BATCH, !!root.dataset.single);
         }
 
         if (e.target.tagName === 'IMG') {
